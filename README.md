@@ -98,6 +98,13 @@ https://github.com/user-attachments/assets/c6f3f79c-d56d-4329-86f2-8a8d7acb68ae
 - [x] ready
 - [x] expand
 - [x] close
+- [x] requestFullscreen
+- [x] exitFullscreen
+- [x] addToHomeScreen
+- [x] checkHomeScreenStatus
+- [x] downloadFile
+- [x] setEmojiStatus
+- [x] requestEmojiStatusAccess
 
 ## Events Support
 - [x] themeChanged
@@ -116,6 +123,12 @@ https://github.com/user-attachments/assets/c6f3f79c-d56d-4329-86f2-8a8d7acb68ae
 - [ ] biometricManagerUpdated
 - [ ] biometricAuthRequested
 - [ ] biometricTokenUpdated
+- [x] fileDownloadRequested
+- [x] homeScreenAdded
+- [x] homeScreenChecked
+- [x] emojiStatusSet
+- [x] emojiStatusFailed
+- [x] emojiStatusAccessRequested
 
 ## Custom Methods
 - [ ] getRequestedContact*

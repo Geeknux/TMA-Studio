@@ -256,6 +256,70 @@ export const TMAView: Component<{
 							projectInner.webview,
 							projectFrame.platform,
 						);
+					} else if (
+						projectInner.popup.regular.press_id === "tg_webapp_home_screen_confirm"
+					) {
+						tgEmitEvent(
+							"home_screen_added",
+							{},
+							projectInner.webview,
+							projectFrame.platform,
+						);
+					} else if (
+						projectInner.popup.regular.press_id === "tg_webapp_download_confirm"
+					) {
+						tgEmitEvent(
+							"file_download_requested",
+							{
+								status: "downloading",
+							},
+							projectInner.webview,
+							projectFrame.platform,
+						);
+					} else if (
+						projectInner.popup.regular.press_id === "tg_webapp_emoji_confirm"
+					) {
+						tgEmitEvent(
+							"emoji_status_set",
+							{
+								status: "set",
+							},
+							projectInner.webview,
+							projectFrame.platform,
+						);
+					} else if (
+						projectInner.popup.regular.press_id === "tg_webapp_emoji_cancel"
+					) {
+						tgEmitEvent(
+							"emoji_status_failed",
+							{
+								error: "USER_DECLINED",
+							},
+							projectInner.webview,
+							projectFrame.platform,
+						);
+					} else if (
+						projectInner.popup.regular.press_id === "tg_webapp_emoji_access_confirm"
+					) {
+						tgEmitEvent(
+							"emoji_status_access_requested",
+							{
+								status: "allowed",
+							},
+							projectInner.webview,
+							projectFrame.platform,
+						);
+					} else if (
+						projectInner.popup.regular.press_id === "tg_webapp_emoji_access_cancel"
+					) {
+						tgEmitEvent(
+							"emoji_status_access_requested",
+							{
+								status: "cancelled",
+							},
+							projectInner.webview,
+							projectFrame.platform,
+						);
 					} else {
 						tgEmitEvent(
 							"popup_closed",

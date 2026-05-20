@@ -23,7 +23,7 @@ import {
 	type ThemeMode,
 } from "./themes";
 
-export const TGWebAppVersion = "7.10";
+export const TGWebAppVersion = "8.0";
 
 export const tgWebAppData = async (
 	platform: TelegramPlatform,
@@ -502,6 +502,94 @@ export const tgEventHandler = (
 
 		case "web_app_share_to_story":
 			setProjectInner("popup", "story", "popup", eventData);
+			break;
+
+		case "web_app_request_fullscreen":
+			setProjectFrame("state", "expanded", true);
+			break;
+
+		case "web_app_exit_fullscreen":
+			setProjectFrame("state", "expanded", false);
+			break;
+
+		case "web_app_add_to_home_screen":
+			setProjectInner("popup", "regular", "popup", {
+				title: "Mock Home Screen",
+				message: "Add this Mini App to Home Screen?",
+				buttons: [
+					{
+						id: "tg_webapp_home_screen_cancel",
+						type: "default",
+						text: "Cancel",
+					},
+					{
+						id: "tg_webapp_home_screen_confirm",
+						type: "default",
+						text: "Add",
+					},
+				],
+			} as TelegramPopup);
+			break;
+
+		case "web_app_check_home_screen":
+			tgEmitEvent("home_screen_checked", { status: "unsupported" }, webview, platform);
+			break;
+
+		case "web_app_download_file":
+			setProjectInner("popup", "regular", "popup", {
+				title: "Mock File Download",
+				message: `Allow downloading file ${eventData.file_name}?`,
+				buttons: [
+					{
+						id: "tg_webapp_download_cancel",
+						type: "default",
+						text: "Cancel",
+					},
+					{
+						id: "tg_webapp_download_confirm",
+						type: "default",
+						text: "Download",
+					},
+				],
+			} as TelegramPopup);
+			break;
+
+		case "web_app_set_emoji_status":
+			setProjectInner("popup", "regular", "popup", {
+				title: "Mock Emoji Status",
+				message: "Allow setting emoji status?",
+				buttons: [
+					{
+						id: "tg_webapp_emoji_cancel",
+						type: "default",
+						text: "Cancel",
+					},
+					{
+						id: "tg_webapp_emoji_confirm",
+						type: "default",
+						text: "Set",
+					},
+				],
+			} as TelegramPopup);
+			break;
+
+		case "web_app_request_emoji_status_access":
+			setProjectInner("popup", "regular", "popup", {
+				title: "Mock Emoji Access",
+				message: "Allow bot to manage emoji status?",
+				buttons: [
+					{
+						id: "tg_webapp_emoji_access_cancel",
+						type: "default",
+						text: "Cancel",
+					},
+					{
+						id: "tg_webapp_emoji_access_confirm",
+						type: "default",
+						text: "Allow",
+					},
+				],
+			} as TelegramPopup);
 			break;
 	}
 };
